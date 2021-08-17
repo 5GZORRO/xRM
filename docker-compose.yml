@@ -217,6 +217,7 @@ services:
       - ${CATALOGUE_SERVER_PORT}:${CATALOGUE_SERVER_PORT}
     depends_on:
       - kafka
+      - postgres
     networks:
       - storage
       - frontend
