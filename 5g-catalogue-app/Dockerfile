@@ -51,6 +51,10 @@ WORKDIR /home/nfv-sol-libs/NFV_MANO_SOL001_LIBS_COMMON
 RUN mvn clean install
 WORKDIR /home/nfv-sol-libs/NFV_MANO_SOL001_LIBS_DESCRIPTORS
 RUN mvn clean install
+WORKDIR /home/nfv-sol-libs/NFV_MANO_SOL006_LIBS_COMMON
+RUN mvn clean install
+WORKDIR /home/nfv-sol-libs/NFV_MANO_SOL006_LIBS_DESCRIPTORS
+RUN mvn clean install
 
 # Install nfvo-ifa-libs
 WORKDIR /home
