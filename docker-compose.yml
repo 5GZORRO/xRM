@@ -18,10 +18,11 @@
 version: '3.5'
 
 networks:
-  frontend:
-    name: frontend
-  storage:
-    name: storage
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
 
 volumes:
   data-elasticsearch:
@@ -37,8 +38,6 @@ services:
     volumes:
       - data-mongo:/data/db
       - ./logs/apim-mongodb:/var/log/mongodb
-    networks:
-      - storage
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION:-7.7.0}
@@ -60,8 +59,6 @@ services:
         soft: -1
         hard: -1
       nofile: 65536
-    networks:
-      - storage
 
   gateway:
     image: graviteeio/apim-gateway:${APIM_VERSION:-3}
@@ -78,9 +75,6 @@ services:
       - gravitee_management_mongodb_uri=mongodb://mongodb:27017/gravitee?serverSelectionTimeoutMS=5000&connectTimeoutMS=5000&socketTimeoutMS=5000
       - gravitee_ratelimit_mongodb_uri=mongodb://mongodb:27017/gravitee?serverSelectionTimeoutMS=5000&connectTimeoutMS=5000&socketTimeoutMS=5000
       - gravitee_reporters_elasticsearch_endpoints_0=http://elasticsearch:9200
-    networks:
-      - storage
-      - frontend
 
   management_api:
     image: graviteeio/apim-management-api:${APIM_VERSION:-3}
@@ -99,9 +93,6 @@ services:
     environment:
       - gravitee_management_mongodb_uri=mongodb://mongodb:27017/gravitee?serverSelectionTimeoutMS=5000&connectTimeoutMS=5000&socketTimeoutMS=5000
       - gravitee_analytics_elasticsearch_endpoints_0=http://elasticsearch:9200
-    networks:
-      - storage
-      - frontend
 
   management_ui:
     image: graviteeio/apim-management-ui:${APIM_VERSION:-3}
@@ -115,8 +106,6 @@ services:
       - MGMT_API_URL=http://localhost:8083/management/organizations/DEFAULT/environments/DEFAULT/
     volumes:
       - ./logs/apim-management-ui:/var/log/nginx
-    networks:
-      - frontend
 
   portal_ui:
     image: graviteeio/apim-portal-ui:${APIM_VERSION:-3}
@@ -130,15 +119,11 @@ services:
       - PORTAL_API_URL=http://localhost:8083/portal/environments/DEFAULT
     volumes:
       - ./logs/apim-portal-ui:/var/log/nginx
-    networks:
-      - frontend
 
   # 5G-Apps & Services Catalogue
   zookeeper:
     image: wurstmeister/zookeeper
     restart: always
-    networks:
-      - storage
 
   kafka:
     image: wurstmeister/kafka:2.12-2.5.0
@@ -149,8 +134,6 @@ services:
         KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     depends_on:
       - zookeeper
-    networks:
-      - storage
 
   postgres:
     image: postgres:10-alpine
@@ -163,8 +146,6 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - ${POSTGRES_PORT}:5432
-    networks:
-      - storage
 
   5gCatalogueApp:
     container_name: 5gCatalogueApp
@@ -218,9 +199,6 @@ services:
     depends_on:
       - kafka
       - postgres
-    networks:
-      - storage
-      - frontend
 
   5gCatalogueGui:
     container_name: 5gCatalogueGui
@@ -243,7 +221,5 @@ services:
       - ${CATALOGUE_GUI_PORT}:80
     depends_on:
       - 5gCatalogueApp
-    networks:
-      - frontend
 
   # Resource Definition Translator
