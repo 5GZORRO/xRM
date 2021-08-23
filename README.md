@@ -6,7 +6,9 @@ x-Resource Manager docker-compose deployment
 - Docker Compose
 
 ## Installation
-Customize the enviroment variables in ```xRM/.env``` and ```xRM/5g-catalogue-app/profiles/default.env```, then, from ```xRM/``` run:
+- Customize the enviroment variables in ```xRM/.env``` and ```xRM/5g-catalogue-app/profiles/default.env```
+- Update the MGMT_API_URL (management_ui service) and PORTAL_API_URL (portal_ui service) environment variables specifying the IP address of the machine on which the xRM will run.
+- from ```xRM/``` run:
 ```bash
 docker-compose up --build -d
 ```
