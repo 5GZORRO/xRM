@@ -128,6 +128,7 @@ services:
       - "2181:2181"
 
   kafka:
+    container_name: kafka
     build:
       context: ./kafka/
       dockerfile: Dockerfile
@@ -139,7 +140,7 @@ services:
     environment:
       KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
+      KAFKA_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
@@ -194,7 +195,7 @@ services:
     environment:
         CATALOGUE_SERVER_PORT: ${CATALOGUE_SERVER_PORT}
         CATALOGUE_POSTGRES_HOST: postgres:5432
-        CATALOGUE_KAFKA_HOST: kafka:9092
+        CATALOGUE_KAFKA_HOST: kafka:9093
         CATALOGUE_SCOPE: ${CATALOGUE_SCOPE}
         KEYCLOAK_AUTHENTICATION: ${KEYCLOAK_AUTHENTICATION}
         KEYCLOAK_REALM: ${KEYCLOAK_REALM}
