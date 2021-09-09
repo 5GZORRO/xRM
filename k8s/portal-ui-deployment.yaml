@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath -v -f /home/michael/Desktop/kompose/docker-compose.yaml
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: portal-ui
+  name: portal-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: portal-ui
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert --volumes hostPath -v -f /home/michael/Desktop/kompose/docker-compose.yaml
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.network: "true"
+        io.kompose.service: portal-ui
+    spec:
+      containers:
+        - env:
+            - name: PORTAL_API_URL
+              value: http://172.28.3.126:31083/portal/environments/DEFAULT
+          image: graviteeio/apim-portal-ui:3
+          name: gio-apim-portal-ui
+          ports:
+            - containerPort: 8080
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/log/nginx
+              name: portal-ui-hostpath0
+      restartPolicy: Always
+      volumes:
+        - hostPath:
+            path: /opt/gravitee/logs/apim-portal-ui
+          name: portal-ui-hostpath0
+status: {}

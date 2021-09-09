@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath -v -f /home/michael/Desktop/kompose/docker-compose.yaml
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: translator
+  name: translator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: translator
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert --volumes hostPath -v -f /home/michael/Desktop/kompose/docker-compose.yaml
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.network: "true"
+        io.kompose.service: translator
+    spec:
+      containers:
+        - env:
+            - name: DESCRIPTOR_SOURCE_HOSTNAME
+              value: CatalogueApp
+            - name: DESCRIPTOR_SOURCE_PORT
+              value: "31086"
+            - name: OFFER_CATALOG_HOSTNAME
+              value: 172.28.3.126
+            - name: OFFER_CATALOG_PORT
+              value: "31080"
+            - name: POSTGRES_HOSTNAME
+              value: postgres
+            - name: POSTGRES_MODE
+              value: create
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_PSW
+              value: postgres
+            - name: POSTGRES_USER
+              value: postgres
+            - name: SERVER_PORT
+              value: "31090"
+            - name: TRANSLATOR_HOSTNAME
+              value: 172.28.3.126
+          image: mikeno/resource-definition-translator:5g_zorro
+          name: resource-definition-translator
+          ports:
+            - containerPort: 31090
+          resources: {}
+      restartPolicy: Always
+status: {}

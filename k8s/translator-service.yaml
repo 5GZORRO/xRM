@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath -v -f /home/michael/Desktop/kompose/docker-compose.yaml
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: translator
+  name: translator
+spec:
+  type: NodePort
+  ports:
+    - name: "31090"
+      port: 31090
+      targetPort: 31090
+      nodePort: 31090
+  selector:
+    io.kompose.service: translator
+status:
+  loadBalancer: {}

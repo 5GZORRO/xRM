@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath -v -f /home/michael/Desktop/kompose/docker-compose.yaml
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: management-api
+  name: management-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: management-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert --volumes hostPath -v -f /home/michael/Desktop/kompose/docker-compose.yaml
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.network: "true"
+        io.kompose.service: management-api
+    spec:
+      nodeSelector:
+        management_api: "true"
+      containers:
+        - env:
+            - name: gravitee_analytics_elasticsearch_endpoints_0
+              value: http://elasticsearch:9200
+            - name: gravitee_management_mongodb_uri
+              value: mongodb://mongodb:27017/gravitee?serverSelectionTimeoutMS=5000&connectTimeoutMS=5000&socketTimeoutMS=5000
+          image: graviteeio/apim-management-api:3
+          name: gio-apim-management-api
+          ports:
+            - containerPort: 8083
+          resources: {}
+          volumeMounts:
+            - mountPath: /opt/graviteeio-management-api/logs
+              name: management-api-hostpath0
+      restartPolicy: Always
+      volumes:
+        - hostPath:
+            path: /opt/gravitee/logs/apim-management-api
+          name: management-api-hostpath0
+status: {}

@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath -v -f /home/michael/Desktop/kompose/docker-compose.yaml
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: catalogueapp
+  name: catalogueapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: catalogueapp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert --volumes hostPath -v -f /home/michael/Desktop/kompose/docker-compose.yaml
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.network: "true"
+        io.kompose.service: catalogueapp
+    spec:
+      containers:
+        - env:
+            - name: CATALOGUE_DB_MODE
+              value: create
+            - name: CATALOGUE_DEFAULT_PROJECT
+              value: admin
+            - name: CATALOGUE_DUMMY_MANO
+              value: "false"
+            - name: CATALOGUE_KAFKA_HOST
+              value: kafka:9093
+            - name: CATALOGUE_LOGO_PATH
+              value: /home/logos/default_logo.png
+            - name: CATALOGUE_MANO_LOCAL_CONFIG
+              value: "true"
+            - name: CATALOGUE_MANO_SITE_INVENTORY_CONFIG
+              value: "false"
+            - name: CATALOGUE_OSM_VIM_NETWORK_NAME
+              value: "false"
+            - name: CATALOGUE_POSTGRES_HOST
+              value: postgres:5432
+            - name: CATALOGUE_RUNTIME_SYNC
+              value: "true"
+            - name: CATALOGUE_RUNTIME_SYNC_PERIOD
+              value: "1"
+            - name: CATALOGUE_SCOPE
+              value: PUBLIC
+            - name: CATALOGUE_SERVER_PORT
+              value: "31086"
+            - name: CATALOGUE_SKIP_DESCRIPTORS_LOAD
+              value: "false"
+            - name: CATALOGUE_SKIP_VIM_CONFIG
+              value: "true"
+            - name: CATALOGUE_STARTUP_SYNC
+              value: "true"
+            - name: CATALOGUE_VIM_TYPE
+              value: DUMMY
+            - name: KEYCLOAK_ADMIN_ROLE
+              value: Administrator
+            - name: KEYCLOAK_AUTHENTICATION
+              value: "false"
+            - name: KEYCLOAK_CLIENT
+              value: 5gcatalogue-be
+            - name: KEYCLOAK_CLIENT_SECRET
+              value: 444c517a-d474-4cc8-928f-606414856e1f
+            - name: KEYCLOAK_PUBLIC_CLIENT
+              value: "false"
+            - name: KEYCLOAK_REALM
+              value: osm
+            - name: KEYCLOAK_URL
+              value: http://127.0.0.1:8080/auth/
+            - name: KEYCLOAK_USER_GROUP
+              value: c0b063e1-ffa6-4d67-b0b7-75df0d3f5084
+            - name: KEYCLOAK_USER_ROLE
+              value: User
+            - name: SITE_INVENTORY_URL
+              value: http://127.0.0.1:31087
+          image: mikeno/5g-catalogue-app:5g_zorro
+          name: catalogueapp
+          ports:
+            - containerPort: 31086
+          resources: {}
+          volumeMounts:
+            - mountPath: /home/catalogueStorage
+              name: catalogueapp-hostpath0
+            - mountPath: /home/manoStorage
+              name: catalogueapp-hostpath1
+            - mountPath: /var/log/5gcatalogue
+              name: catalogueapp-hostpath2
+      restartPolicy: Always
+      volumes:
+        - hostPath:
+            path: /opt/5gcatalogue-app/catalogueStorage
+          name: catalogueapp-hostpath0
+        - hostPath:
+            path: /opt/5gcatalogue-app/manoStorage
+          name: catalogueapp-hostpath1
+        - hostPath:
+            path: /opt/5gcatalogue-app/logs
+          name: catalogueapp-hostpath2
+status: {}
