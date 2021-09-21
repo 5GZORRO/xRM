@@ -48,7 +48,9 @@ spec:
               value: "31090"
             - name: TRANSLATOR_HOSTNAME
               value: 172.28.3.126
-          image: mikeno/resource-definition-translator:5g_zorro
+            - name: RAPP_URL
+              value: 172.28.3.242:2626
+          image: mikeno/resource-definition-translator:latest
           name: resource-definition-translator
           ports:
             - containerPort: 31090

@@ -81,7 +81,7 @@ spec:
               value: User
             - name: SITE_INVENTORY_URL
               value: http://127.0.0.1:31087
-          image: mikeno/5g-catalogue-app:5g_zorro
+          image: mikeno/5g-catalogue-app:latest
           name: catalogueapp
           ports:
             - containerPort: 31086

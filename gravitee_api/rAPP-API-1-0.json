@@ -1,0 +1,144 @@
+{
+  "name": "rAPP-API",
+  "version": "1.0",
+  "description": "Endpoints to interact with the Radio Planning and Spectrum Application:\n- Endpoint to retrieve the Spectrum Resources from the rAPP\n- Endpoint to retrieve the Radio Resources from the rAPP",
+  "visibility": "PUBLIC",
+  "gravitee": "2.0.0",
+  "flow_mode": "DEFAULT",
+  "resources": [],
+  "properties": [],
+  "members": [
+    {
+      "source": "memory",
+      "sourceId": "admin",
+      "roles": [
+        "8fd6ec23-202c-4f2d-96ec-23202cef2d0a"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "id": "fa8dc89c-e1ea-4f55-8dc8-9ce1ea3f5547",
+      "name": "Aside",
+      "type": "SYSTEM_FOLDER",
+      "order": 0,
+      "published": true,
+      "visibility": "PUBLIC",
+      "lastModificationDate": 1632145147281,
+      "contentType": "application/json",
+      "homepage": false,
+      "parentPath": "",
+      "excludedAccessControls": false,
+      "accessControls": [],
+      "api": "9d5f5423-8d53-4193-9f54-238d5351937a"
+    }
+  ],
+  "plans": [
+    {
+      "id": "552f0a42-1710-469f-af0a-421710769faa",
+      "name": "rAPP-API-Plan",
+      "description": "Plan for the rAPP API",
+      "validation": "AUTO",
+      "security": "API_KEY",
+      "type": "API",
+      "status": "PUBLISHED",
+      "api": "9d5f5423-8d53-4193-9f54-238d5351937a",
+      "order": 0,
+      "characteristics": [],
+      "created_at": 1632145147308,
+      "updated_at": 1632145147308,
+      "paths": {},
+      "flows": [
+        {
+          "name": "",
+          "path-operator": {
+            "operator": "STARTS_WITH",
+            "path": "/"
+          },
+          "condition": "",
+          "methods": [
+            "GET"
+          ],
+          "pre": [
+            {
+              "name": "Dynamic Routing",
+              "description": "",
+              "enabled": true,
+              "policy": "dynamic-routing",
+              "configuration": {
+                "rules": [
+                  {
+                    "pattern": "/spc",
+                    "url": "{#endpoints['default']}/SpectrumWallet/listSpectrumResources"
+                  },
+                  {
+                    "pattern": "/rad",
+                    "url": "{#endpoints['default']}/RadioResources/listRadioResources"
+                  }
+                ]
+              }
+            }
+          ],
+          "post": [],
+          "enabled": true
+        }
+      ],
+      "comment_required": false
+    }
+  ],
+  "metadata": [
+    {
+      "key": "email-support",
+      "name": "email-support",
+      "format": "MAIL",
+      "value": "${(api.primaryOwner.email)!''}",
+      "defaultValue": "support@change.me",
+      "apiId": "9d5f5423-8d53-4193-9f54-238d5351937a"
+    }
+  ],
+  "id": "9d5f5423-8d53-4193-9f54-238d5351937a",
+  "path_mappings": [],
+  "proxy": {
+    "virtual_hosts": [
+      {
+        "path": "/rapp"
+      }
+    ],
+    "strip_context_path": false,
+    "preserve_host": false,
+    "groups": [
+      {
+        "name": "default-group",
+        "endpoints": [
+          {
+            "name": "default",
+            "target": "http://172.28.3.242:2626",
+            "weight": 1,
+            "backup": false,
+            "type": "HTTP",
+            "inherit": true
+          }
+        ],
+        "load_balancing": {
+          "type": "ROUND_ROBIN"
+        },
+        "http": {
+          "connectTimeout": 5000,
+          "idleTimeout": 60000,
+          "keepAlive": true,
+          "readTimeout": 10000,
+          "pipelining": false,
+          "maxConcurrentConnections": 100,
+          "useCompression": true,
+          "followRedirects": false
+        }
+      }
+    ]
+  },
+  "response_templates": {},
+  "primaryOwner": {
+    "id": "89ec0cff-b1b2-461c-ac0c-ffb1b2d61c95",
+    "displayName": "admin",
+    "type": "USER"
+  }
+}

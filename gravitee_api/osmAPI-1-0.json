@@ -1,0 +1,218 @@
+{
+  "name": "osmAPI",
+  "version": "1.0",
+  "description": "Endpoints to interact with Open Source MANO (OSM):\n- Generate the OSM token in order to use the other OSM API(s)\n- Endpoint to retrieve a Network Service Descriptor using the OSM identifier\n- Endpoint(s) to manage Lifecycle Management\n- Endpoint to retrieve OSM monitoring data",
+  "visibility": "PRIVATE",
+  "gravitee": "2.0.0",
+  "flow_mode": "DEFAULT",
+  "resources": [],
+  "properties": [],
+  "members": [
+    {
+      "source": "memory",
+      "sourceId": "admin",
+      "roles": [
+        "326cc7aa-919d-44a1-acc7-aa919d64a162"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "id": "49bad8fb-ed87-4480-bad8-fbed87948024",
+      "name": "Aside",
+      "type": "SYSTEM_FOLDER",
+      "order": 0,
+      "published": true,
+      "visibility": "PUBLIC",
+      "lastModificationDate": 1627371928296,
+      "contentType": "application/json",
+      "homepage": false,
+      "parentPath": "",
+      "excludedAccessControls": false,
+      "accessControls": [],
+      "api": "933831dd-6d7f-4ee5-b831-dd6d7f2ee577"
+    }
+  ],
+  "plans": [
+    {
+      "id": "ea784c06-181c-450b-b84c-06181ce50b52",
+      "name": "osmAPI Plan",
+      "description": "Plan for the Open Source MANO (OSM) API",
+      "validation": "AUTO",
+      "security": "API_KEY",
+      "type": "API",
+      "status": "PUBLISHED",
+      "api": "933831dd-6d7f-4ee5-b831-dd6d7f2ee577",
+      "order": 0,
+      "characteristics": [],
+      "created_at": 1627371928311,
+      "updated_at": 1627371928311,
+      "paths": {},
+      "flows": [
+        {
+          "name": "",
+          "path-operator": {
+            "operator": "STARTS_WITH",
+            "path": "/"
+          },
+          "condition": "",
+          "methods": [
+            "GET"
+          ],
+          "pre": [
+            {
+              "name": "Dynamic Routing",
+              "description": "",
+              "enabled": true,
+              "policy": "dynamic-routing",
+              "configuration": {
+                "rules": [
+                  {
+                    "pattern": "/nsd",
+                    "url": "{#endpoints['default']}/osm/nsd/v1/ns_descriptors"
+                  },
+                  {
+                    "pattern": "/nsd/(.*)",
+                    "url": "{#endpoints['default']}/osm/nsd/v1/ns_descriptors/{#group[0]}/nsd"
+                  },
+                  {
+                    "pattern": "/lcm/vnf/(.*)",
+                    "url": "{#endpoints['default']}/osm/nslcm/v1/vnf_instances/{#group[0]}"
+                  },
+                  {
+                    "pattern": "/lcm/ns/op_occs",
+                    "url": "{#endpoints['default']}/osm/nslcm/v1/ns_lcm_op_occs"
+                  },
+                  {
+                    "pattern": "/lcm/ns/ns_instances",
+                    "url": "{#endpoints['default']}/osm/nslcm/v1/ns_instances"
+                  },
+                  {
+                    "pattern": "/monitoringData",
+                    "url": "{#endpoints['monitoring']}"
+                  }
+                ]
+              }
+            }
+          ],
+          "post": [],
+          "enabled": true
+        },
+        {
+          "name": "",
+          "path-operator": {
+            "operator": "STARTS_WITH",
+            "path": "/"
+          },
+          "condition": "",
+          "methods": [
+            "POST"
+          ],
+          "pre": [
+            {
+              "name": "Dynamic Routing",
+              "description": "",
+              "enabled": true,
+              "policy": "dynamic-routing",
+              "configuration": {
+                "rules": [
+                  {
+                    "pattern": "/token",
+                    "url": "{#endpoints['default']}/osm/admin/v1/tokens"
+                  }
+                ]
+              }
+            }
+          ],
+          "post": [],
+          "enabled": true
+        }
+      ],
+      "comment_required": false
+    }
+  ],
+  "metadata": [
+    {
+      "key": "email-support",
+      "name": "email-support",
+      "format": "MAIL",
+      "value": "${(api.primaryOwner.email)!''}",
+      "defaultValue": "support@change.me",
+      "apiId": "933831dd-6d7f-4ee5-b831-dd6d7f2ee577"
+    }
+  ],
+  "id": "933831dd-6d7f-4ee5-b831-dd6d7f2ee577",
+  "path_mappings": [],
+  "proxy": {
+    "virtual_hosts": [
+      {
+        "path": "/osm"
+      }
+    ],
+    "strip_context_path": false,
+    "preserve_host": false,
+    "logging": {
+      "mode": "CLIENT_PROXY",
+      "content": "HEADERS_PAYLOADS",
+      "scope": "REQUEST_RESPONSE"
+    },
+    "groups": [
+      {
+        "name": "default-group",
+        "endpoints": [
+          {
+            "name": "default",
+            "target": "https://10.30.8.28:9999",
+            "weight": 1,
+            "backup": false,
+            "type": "HTTP",
+            "inherit": true
+          },
+          {
+            "name": "monitoring",
+            "target": "http://10.30.8.28:9091/api/v1/query_range",
+            "weight": 1,
+            "backup": false,
+            "type": "HTTP",
+            "inherit": true
+          }
+        ],
+        "load_balancing": {
+          "type": "ROUND_ROBIN"
+        },
+        "services": {
+          "discovery": {
+            "enabled": false
+          }
+        },
+        "proxy": {
+          "enabled": false,
+          "useSystemProxy": false,
+          "host": "null",
+          "port": 0,
+          "type": "HTTP"
+        },
+        "http": {
+          "connectTimeout": 5000,
+          "idleTimeout": 60000,
+          "keepAlive": true,
+          "readTimeout": 10000,
+          "pipelining": false,
+          "maxConcurrentConnections": 100,
+          "useCompression": true,
+          "followRedirects": false
+        },
+        "ssl": {
+          "trustAll": true,
+          "hostnameVerifier": false
+        }
+      }
+    ]
+  },
+  "response_templates": {},
+  "primaryOwner": {
+    "id": "9decb7d6-ae82-41f6-acb7-d6ae8231f6ac",
+    "displayName": "admin",
+    "type": "USER"
+  }
+}

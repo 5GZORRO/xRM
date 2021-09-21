@@ -1,0 +1,151 @@
+{
+  "name": "5G-CatalogueAPI",
+  "version": "1.0",
+  "description": "Endpoints to interact with the 5G Apps & Services Catalogue:\n- Endpoint to retrieve a Network Service Descriptor from the 5G Apps & Services Catalogue using the ns info id\n- Endpoint to retrieve a Virtualized Network Function from the 5G Apps & Services Catalogue using the vnf package id",
+  "visibility": "PRIVATE",
+  "gravitee": "2.0.0",
+  "flow_mode": "DEFAULT",
+  "resources": [],
+  "properties": [],
+  "members": [
+    {
+      "source": "memory",
+      "sourceId": "admin",
+      "roles": [
+        "326cc7aa-919d-44a1-acc7-aa919d64a162"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "id": "31d7640c-95b7-4afb-9764-0c95b72afb28",
+      "name": "Aside",
+      "type": "SYSTEM_FOLDER",
+      "order": 0,
+      "published": true,
+      "visibility": "PUBLIC",
+      "lastModificationDate": 1627335668621,
+      "contentType": "application/json",
+      "homepage": false,
+      "parentPath": "",
+      "excludedAccessControls": false,
+      "accessControls": [],
+      "api": "8aa7b186-ca76-4995-a7b1-86ca76c995bd"
+    }
+  ],
+  "plans": [
+    {
+      "id": "2bf6e475-ca6b-4626-b6e4-75ca6b7626ed",
+      "name": "5G CatalogueAPI Plan",
+      "description": "5G CatalogueAPI Plan",
+      "validation": "AUTO",
+      "security": "API_KEY",
+      "type": "API",
+      "status": "PUBLISHED",
+      "api": "8aa7b186-ca76-4995-a7b1-86ca76c995bd",
+      "order": 0,
+      "created_at": 1627335668641,
+      "updated_at": 1627335668641,
+      "paths": {},
+      "flows": [
+        {
+          "name": "",
+          "path-operator": {
+            "operator": "STARTS_WITH",
+            "path": "/"
+          },
+          "condition": "",
+          "methods": [
+            "GET"
+          ],
+          "pre": [
+            {
+              "name": "Dynamic Routing",
+              "description": "",
+              "enabled": true,
+              "policy": "dynamic-routing",
+              "configuration": {
+                "rules": [
+                  {
+                    "pattern": "/nsd",
+                    "url": "{#endpoints['default']}/nsd/v1/ns_descriptors"
+                  },
+                  {
+                    "pattern": "/nsd/(.*)",
+                    "url": "{#endpoints['default']}/nsd/v1/ns_descriptors/{#group[0]}"
+                  },
+                  {
+                    "pattern": "/vnfd",
+                    "url": "{#endpoints['default']}/vnfpkgm/v1/vnf_packages"
+                  },
+                  {
+                    "pattern": "/vnfd/(.*)",
+                    "url": "{#endpoints['default']}/vnfpkgm/v1/vnf_packages/{#group[0]}"
+                  }
+                ]
+              }
+            }
+          ],
+          "post": [],
+          "enabled": true
+        }
+      ],
+      "comment_required": false
+    }
+  ],
+  "metadata": [
+    {
+      "key": "email-support",
+      "name": "email-support",
+      "format": "MAIL",
+      "value": "${(api.primaryOwner.email)!''}",
+      "defaultValue": "support@change.me",
+      "apiId": "8aa7b186-ca76-4995-a7b1-86ca76c995bd"
+    }
+  ],
+  "id": "8aa7b186-ca76-4995-a7b1-86ca76c995bd",
+  "path_mappings": [],
+  "proxy": {
+    "virtual_hosts": [
+      {
+        "path": "/catalogue"
+      }
+    ],
+    "strip_context_path": false,
+    "preserve_host": false,
+    "groups": [
+      {
+        "name": "default-group",
+        "endpoints": [
+          {
+            "name": "default",
+            "target": "http://172.17.0.1:8086",
+            "weight": 1,
+            "backup": false,
+            "type": "HTTP",
+            "inherit": true
+          }
+        ],
+        "load_balancing": {
+          "type": "ROUND_ROBIN"
+        },
+        "http": {
+          "connectTimeout": 5000,
+          "idleTimeout": 60000,
+          "keepAlive": true,
+          "readTimeout": 10000,
+          "pipelining": false,
+          "maxConcurrentConnections": 100,
+          "useCompression": true,
+          "followRedirects": false
+        }
+      }
+    ]
+  },
+  "response_templates": {},
+  "primaryOwner": {
+    "id": "9decb7d6-ae82-41f6-acb7-d6ae8231f6ac",
+    "displayName": "admin",
+    "type": "USER"
+  }
+}
