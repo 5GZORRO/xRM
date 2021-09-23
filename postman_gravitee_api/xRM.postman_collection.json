@@ -1,0 +1,466 @@
+{
+	"info": {
+		"_postman_id": "df6efc04-c11e-44cf-8a7b-a98bf805eccb",
+		"name": "xRM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getVnfCatGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "61a93c48-992d-4f4f-a8c9-2433b090d54b",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/catalogue/vnfd/",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"catalogue",
+						"vnfd",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNsCatGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "61a93c48-992d-4f4f-a8c9-2433b090d54b",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/catalogue/nsd/",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"catalogue",
+						"nsd",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "translateVnfGravitee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "bece6398-437e-4a30-9c41-2afc8388e7bd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/translator/vnf/ae38a857-5586-4908-8fef-460ac5a1fbff",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"translator",
+						"vnf",
+						"ae38a857-5586-4908-8fef-460ac5a1fbff"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "translateNsGravitee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "bece6398-437e-4a30-9c41-2afc8388e7bd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/translator/ns/e691903d-4c56-439b-8aba-8ee3e97dc1cf",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"translator",
+						"ns",
+						"e691903d-4c56-439b-8aba-8ee3e97dc1cf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "translateSpcGravitee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "bece6398-437e-4a30-9c41-2afc8388e7bd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/translator/spc/2d358e45-123a-487d-9409-c2e367a6a019",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"translator",
+						"spc",
+						"2d358e45-123a-487d-9409-c2e367a6a019"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "translateRadGravitee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "bece6398-437e-4a30-9c41-2afc8388e7bd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/translator/rad/894b5e73-9959-4a23-a05d-8ddaba78fc3e",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"translator",
+						"rad",
+						"894b5e73-9959-4a23-a05d-8ddaba78fc3e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSpcRAPPGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "7fb384dc-12aa-4a23-af93-74c8f7dd2e67",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/rapp/spc",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"rapp",
+						"spc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRadRAPPGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "7fb384dc-12aa-4a23-af93-74c8f7dd2e67",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/rapp/rad",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"rapp",
+						"rad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generateTokenGravitee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"admin\", \"password\": \"admin\", \"project_id\": \"admin\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/token",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNsdOsmGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer ANqDeSeMmRhNuNWPvWGrBuyvUdXri439",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/nsd",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"nsd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLcmVnfOsmGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer ANqDeSeMmRhNuNWPvWGrBuyvUdXri439",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/lcm/vnf/b80991a0-23d4-46c5-b25e-5a492fa6293d",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"lcm",
+						"vnf",
+						"b80991a0-23d4-46c5-b25e-5a492fa6293d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLcmNsOsmGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer ANqDeSeMmRhNuNWPvWGrBuyvUdXri439",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/lcm/ns/op_occs",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"lcm",
+						"ns",
+						"op_occs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLcmNsNsInstancesOsmGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer ANqDeSeMmRhNuNWPvWGrBuyvUdXri439",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/lcm/ns/ns_instances",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"lcm",
+						"ns",
+						"ns_instances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOsmMonitoringGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/monitoringData",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"monitoringData"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

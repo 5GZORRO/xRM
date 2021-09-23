@@ -223,7 +223,7 @@ services:
       args:
         catalogue_repo: https://github.com/nextworks-it/5g-catalogue.git
         catalogue_version: ${CATALOGUE_VERSION}
-        catalogue_server_port: ${CATALOGUE_SERVER_PORT}
+        catalogue_server_port: ${CATALOGUE_SERVER_PORT_GUI}
         catalogue_scope: ${CATALOGUE_SCOPE}
         catalogue_profile: ${CATALOGUE_PROFILE}
         keycloak_enabled: ${KEYCLOAK_AUTHENTICATION}
