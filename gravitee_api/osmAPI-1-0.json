@@ -1,8 +1,8 @@
 {
   "name": "osmAPI",
   "version": "1.0",
-  "description": "Endpoints to interact with Open Source MANO (OSM):\n- Generate the OSM token in order to use the other OSM API(s)\n- Endpoint to retrieve a Network Service Descriptor using the OSM identifier\n- Endpoint(s) to manage Lifecycle Management\n- Endpoint to retrieve OSM monitoring data",
-  "visibility": "PRIVATE",
+  "description": "Endpoints to interact with Open Source MANO (OSM)",
+  "visibility": "PUBLIC",
   "gravitee": "2.0.0",
   "flow_mode": "DEFAULT",
   "resources": [],
@@ -12,19 +12,19 @@
       "source": "memory",
       "sourceId": "admin",
       "roles": [
-        "326cc7aa-919d-44a1-acc7-aa919d64a162"
+        "3c12d9a9-01ae-45b5-92d9-a901aea5b589"
       ]
     }
   ],
   "pages": [
     {
-      "id": "49bad8fb-ed87-4480-bad8-fbed87948024",
+      "id": "8122dcab-2fb2-3297-8256-7dcf06d81ac0",
       "name": "Aside",
       "type": "SYSTEM_FOLDER",
       "order": 0,
       "published": true,
       "visibility": "PUBLIC",
-      "lastModificationDate": 1627371928296,
+      "lastModificationDate": 1632315709488,
       "contentType": "application/json",
       "homepage": false,
       "parentPath": "",
@@ -35,7 +35,7 @@
   ],
   "plans": [
     {
-      "id": "ea784c06-181c-450b-b84c-06181ce50b52",
+      "id": "872286d7-18a9-3594-91cc-91220e0eb41a",
       "name": "osmAPI Plan",
       "description": "Plan for the Open Source MANO (OSM) API",
       "validation": "AUTO",
@@ -45,17 +45,18 @@
       "api": "933831dd-6d7f-4ee5-b831-dd6d7f2ee577",
       "order": 0,
       "characteristics": [],
-      "created_at": 1627371928311,
-      "updated_at": 1627371928311,
+      "created_at": 1632315709508,
+      "updated_at": 1632315709508,
       "paths": {},
       "flows": [
         {
           "name": "",
           "path-operator": {
-            "operator": "STARTS_WITH",
-            "path": "/"
+            "path": "/",
+            "operator": "STARTS_WITH"
           },
           "condition": "",
+          "consumers": [],
           "methods": [
             "GET"
           ],
@@ -68,28 +69,52 @@
               "configuration": {
                 "rules": [
                   {
-                    "pattern": "/nsd",
+                    "pattern": "/nsd/v1/ns_descriptors",
                     "url": "{#endpoints['default']}/osm/nsd/v1/ns_descriptors"
                   },
                   {
-                    "pattern": "/nsd/(.*)",
+                    "pattern": "/nsd/v1/ns_descriptors/(.*)",
+                    "url": "{#endpoints['default']}/osm/nsd/v1/ns_descriptors/{#group[0]}"
+                  },
+                  {
+                    "pattern": "/nsd/v1/ns_descriptors/(.*)/nsd",
                     "url": "{#endpoints['default']}/osm/nsd/v1/ns_descriptors/{#group[0]}/nsd"
                   },
                   {
-                    "pattern": "/lcm/vnf/(.*)",
+                    "pattern": "/vnfpkgm/v1/vnf_packages",
+                    "url": "{#endpoints['default']}/osm/vnfpkgm/v1/vnf_packages"
+                  },
+                  {
+                    "pattern": "/vnfpkgm/v1/vnf_packages/(.*)",
+                    "url": "{#endpoints['default']}/osm/vnfpkgm/v1/vnf_packages/{#group[0]}"
+                  },
+                  {
+                    "pattern": "/vnfpkgm/v1/vnf_packages/(.*)/vnfd",
+                    "url": "{#endpoints['default']}/osm/vnfpkgm/v1/vnf_packages/{#group[0]}/vnfd"
+                  },
+                  {
+                    "pattern": "/nslcm/v1/vnf_instances",
+                    "url": "{#endpoints['default']}/osm/nslcm/v1/vnf_instances"
+                  },
+                  {
+                    "pattern": "/nslcm/v1/vnf_instances/(.*)",
                     "url": "{#endpoints['default']}/osm/nslcm/v1/vnf_instances/{#group[0]}"
                   },
                   {
-                    "pattern": "/lcm/ns/op_occs",
-                    "url": "{#endpoints['default']}/osm/nslcm/v1/ns_lcm_op_occs"
-                  },
-                  {
-                    "pattern": "/lcm/ns/ns_instances",
+                    "pattern": "/nslcm/v1/ns_instances",
                     "url": "{#endpoints['default']}/osm/nslcm/v1/ns_instances"
                   },
                   {
-                    "pattern": "/monitoringData",
-                    "url": "{#endpoints['monitoring']}"
+                    "pattern": "/nslcm/v1/ns_instances/(.*)",
+                    "url": "{#endpoints['default']}/osm/nslcm/v1/ns_instances/{#group[0]}"
+                  },
+                  {
+                    "pattern": "/nslcm/v1/ns_lcm_op_occs",
+                    "url": "{#endpoints['default']}/osm/nslcm/v1/ns_lcm_op_occs"
+                  },
+                  {
+                    "pattern": "/nslcm/v1/ns_lcm_op_occs/(.*)",
+                    "url": "{#endpoints['default']}/osm/nslcm/v1/ns_lcm_op_occs/{#group[0]}"
                   }
                 ]
               }
@@ -101,10 +126,11 @@
         {
           "name": "",
           "path-operator": {
-            "operator": "STARTS_WITH",
-            "path": "/"
+            "path": "/",
+            "operator": "STARTS_WITH"
           },
           "condition": "",
+          "consumers": [],
           "methods": [
             "POST"
           ],
@@ -117,8 +143,12 @@
               "configuration": {
                 "rules": [
                   {
-                    "pattern": "/token",
+                    "pattern": "/admin/v1/tokens",
                     "url": "{#endpoints['default']}/osm/admin/v1/tokens"
+                  },
+                  {
+                    "pattern": "/nslcm/v1/ns_instances/(.*)/action",
+                    "url": "{#endpoints['default']}/osm/nslcm/v1/ns_instances/{#group[0]}/action"
                   }
                 ]
               }
@@ -162,7 +192,7 @@
         "endpoints": [
           {
             "name": "default",
-            "target": "https://10.30.8.28:9999",
+            "target": "https://172.28.3.17:9999",
             "weight": 1,
             "backup": false,
             "type": "HTTP",
@@ -170,7 +200,7 @@
           },
           {
             "name": "monitoring",
-            "target": "http://10.30.8.28:9091/api/v1/query_range",
+            "target": "http://172.28.3.17:9091/api/v1/query_range",
             "weight": 1,
             "backup": false,
             "type": "HTTP",
@@ -207,11 +237,34 @@
           "hostnameVerifier": false
         }
       }
-    ]
+    ],
+    "cors": {
+      "enabled": true,
+      "allowCredentials": false,
+      "allowOrigin": [
+        "*"
+      ],
+      "allowHeaders": [
+        "x-gravitee-api-key"
+      ],
+      "allowMethods": [
+        "TRACE",
+        "HEAD",
+        "DELETE",
+        "POST",
+        "GET",
+        "OPTIONS",
+        "PATCH",
+        "PUT"
+      ],
+      "exposeHeaders": [],
+      "maxAge": -1,
+      "runPolicies": true
+    }
   },
   "response_templates": {},
   "primaryOwner": {
-    "id": "9decb7d6-ae82-41f6-acb7-d6ae8231f6ac",
+    "id": "4b91fb5b-d206-498c-91fb-5bd206398cb0",
     "displayName": "admin",
     "type": "USER"
   }

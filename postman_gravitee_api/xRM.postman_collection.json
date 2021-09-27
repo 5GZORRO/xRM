@@ -274,7 +274,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://172.28.3.126:31081/osm/token",
+					"raw": "http://172.28.3.126:31081/osm/admin/v1/tokens",
 					"protocol": "http",
 					"host": [
 						"172",
@@ -285,7 +285,45 @@
 					"port": "31081",
 					"path": [
 						"osm",
-						"token"
+						"admin",
+						"v1",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNsdsOsmGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/nsd/v1/ns_descriptors",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"nsd",
+						"v1",
+						"ns_descriptors"
 					]
 				}
 			},
@@ -303,12 +341,12 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer ANqDeSeMmRhNuNWPvWGrBuyvUdXri439",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://172.28.3.126:31081/osm/nsd",
+					"raw": "http://172.28.3.126:31081/osm/nsd/v1/ns_descriptors/944904b3-7f84-4637-91a9-15ab2af92c7b",
 					"protocol": "http",
 					"host": [
 						"172",
@@ -319,6 +357,47 @@
 					"port": "31081",
 					"path": [
 						"osm",
+						"nsd",
+						"v1",
+						"ns_descriptors",
+						"944904b3-7f84-4637-91a9-15ab2af92c7b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNsDescriptorOsmGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/nsd/v1/ns_descriptors/944904b3-7f84-4637-91a9-15ab2af92c7b/nsd",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"nsd",
+						"v1",
+						"ns_descriptors",
+						"944904b3-7f84-4637-91a9-15ab2af92c7b",
 						"nsd"
 					]
 				}
@@ -326,7 +405,7 @@
 			"response": []
 		},
 		{
-			"name": "getLcmVnfOsmGravitee",
+			"name": "getVnfPkgsOsmGravitee",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -337,12 +416,12 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer ANqDeSeMmRhNuNWPvWGrBuyvUdXri439",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://172.28.3.126:31081/osm/lcm/vnf/b80991a0-23d4-46c5-b25e-5a492fa6293d",
+					"raw": "http://172.28.3.126:31081/osm/vnfpkgm/v1/vnf_packages",
 					"protocol": "http",
 					"host": [
 						"172",
@@ -353,16 +432,16 @@
 					"port": "31081",
 					"path": [
 						"osm",
-						"lcm",
-						"vnf",
-						"b80991a0-23d4-46c5-b25e-5a492fa6293d"
+						"vnfpkgm",
+						"v1",
+						"vnf_packages"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "getLcmNsOsmGravitee",
+			"name": "getVnfPkgOsmGravitee",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -373,12 +452,12 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer ANqDeSeMmRhNuNWPvWGrBuyvUdXri439",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://172.28.3.126:31081/osm/lcm/ns/op_occs",
+					"raw": "http://172.28.3.126:31081/osm/vnfpkgm/v1/vnf_packages/b3424085-d1af-4c8b-b022-f0843df26ad7",
 					"protocol": "http",
 					"host": [
 						"172",
@@ -389,16 +468,17 @@
 					"port": "31081",
 					"path": [
 						"osm",
-						"lcm",
-						"ns",
-						"op_occs"
+						"vnfpkgm",
+						"v1",
+						"vnf_packages",
+						"b3424085-d1af-4c8b-b022-f0843df26ad7"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "getLcmNsNsInstancesOsmGravitee",
+			"name": "getVnfdOsmGravitee",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -409,12 +489,12 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer ANqDeSeMmRhNuNWPvWGrBuyvUdXri439",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://172.28.3.126:31081/osm/lcm/ns/ns_instances",
+					"raw": "http://172.28.3.126:31081/osm/vnfpkgm/v1/vnf_packages/b3424085-d1af-4c8b-b022-f0843df26ad7/vnfd",
 					"protocol": "http",
 					"host": [
 						"172",
@@ -425,8 +505,119 @@
 					"port": "31081",
 					"path": [
 						"osm",
-						"lcm",
-						"ns",
+						"vnfpkgm",
+						"v1",
+						"vnf_packages",
+						"b3424085-d1af-4c8b-b022-f0843df26ad7",
+						"vnfd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getVnfInstancesOsmGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/nslcm/v1/vnf_instances",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"nslcm",
+						"v1",
+						"vnf_instances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getVnfInstanceOsmGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/nslcm/v1/vnf_instances/b14b5188-901b-4a38-a5ff-0d6799466b69",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"nslcm",
+						"v1",
+						"vnf_instances",
+						"b14b5188-901b-4a38-a5ff-0d6799466b69"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNsInstancesOsmGravitee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/nslcm/v1/ns_instances",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"nslcm",
+						"v1",
 						"ns_instances"
 					]
 				}
@@ -434,7 +625,7 @@
 			"response": []
 		},
 		{
-			"name": "getOsmMonitoringGravitee",
+			"name": "getNsInstanceOsmGravitee",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -442,10 +633,15 @@
 						"key": "X-Gravitee-Api-Key",
 						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
+						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://172.28.3.126:31081/osm/monitoringData",
+					"raw": "http://172.28.3.126:31081/osm/nslcm/v1/ns_instances/ed5081a8-2ef9-4452-b648-c0b99e8be8a8",
 					"protocol": "http",
 					"host": [
 						"172",
@@ -456,7 +652,121 @@
 					"port": "31081",
 					"path": [
 						"osm",
-						"monitoringData"
+						"nslcm",
+						"v1",
+						"ns_instances",
+						"ed5081a8-2ef9-4452-b648-c0b99e8be8a8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postNsInstanceActionOsmGravitee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/nslcm/v1/ns_instances/ed5081a8-2ef9-4452-b648-c0b99e8be8a8/action",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"nslcm",
+						"v1",
+						"ns_instances",
+						"ed5081a8-2ef9-4452-b648-c0b99e8be8a8",
+						"action"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNsLcmOpOccs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/nslcm/v1/ns_lcm_op_occs",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"nslcm",
+						"v1",
+						"ns_lcm_op_occs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNsLcmOpOcc",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Gravitee-Api-Key",
+						"value": "dba7c37d-6704-428a-a756-d1c404d26ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer F0AxYvQdU4ybIAufwNn4VtVfT760AaLL",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://172.28.3.126:31081/osm/nslcm/v1/ns_lcm_op_occs/fa7794e4-df35-454a-988c-185143aae5ac",
+					"protocol": "http",
+					"host": [
+						"172",
+						"28",
+						"3",
+						"126"
+					],
+					"port": "31081",
+					"path": [
+						"osm",
+						"nslcm",
+						"v1",
+						"ns_lcm_op_occs",
+						"fa7794e4-df35-454a-988c-185143aae5ac"
 					]
 				}
 			},
