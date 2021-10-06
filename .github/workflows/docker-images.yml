@@ -31,43 +31,25 @@ jobs:
         with:
           context: .
           file: 5g-catalogue-app/Dockerfile
-          build-args:
-            - name: catalogue_repo
-              value: https://github.com/nextworks-it/5g-catalogue.git
-            - name: catalogue_version
-              value: 5g_zorro
-            - name: catalogue_server_port
-              value: 8086
-            - name: nfv_sol_libs_repo
-              value: https://github.com/nextworks-it/nfv-sol-libs.git
-            - name: nfv_sol_libs_version
-              value: feat-nfv-sol006-libs-osm
-            - name: nfv_ifa_libs_repo
-              value: https://github.com/nextworks-it/nfv-ifa-libs.git
-            - name: nfv_ifa_libs_version
-              value: dev_5growth
-            - name: mano_id
-              value: ZORRO_OSMR10
-            - name: mano_type
-              value: OSMR10
-            - name: mano_site
-              value: ZORRO_OSM
-            - name: mano_ip
-              value: 172.28.3.59
-            - name: mano_port
-              value: 9999
-            - name: mano_username
-              value: admin
-            - name: mano_password
-              value: admin
-            - name: mano_project
-              value: admin
-            - name: public_catalogue_id
-              value: DEFAULT_CAT
-            - name: public_catalogue_url
-              value: http://127.0.0.1:8083/
-            - name: proxy_enabled
-              value: false
+          build-args: |
+            catalogue_repo=https://github.com/nextworks-it/5g-catalogue.git
+            catalogue_version=5g_zorro
+            catalogue_server_port=8086
+            nfv_sol_libs_repo=https://github.com/nextworks-it/nfv-sol-libs.git
+            nfv_sol_libs_version=feat-nfv-sol006-libs-osm
+            nfv_ifa_libs_repo=value: https://github.com/nextworks-it/nfv-ifa-libs.git
+            nfv_ifa_libs_version=dev_5growth
+            mano_id=value: ZORRO_OSMR10
+            mano_type=OSMR10
+            mano_site=ZORRO_OSM
+            mano_ip=172.28.3.59
+            mano_port=9999
+            mano_username=admin
+            mano_password=admin
+            mano_project=admin
+            public_catalogue_id=DEFAULT_CAT
+            public_catalogue_url=http://127.0.0.1:8083/
+            proxy_enabled=false
           push: true
           tags: docker.pkg.github.com/Mike-no/xRM/5gCatalogueApp:latest
       - name: Build 5gCatalogueGui Container image
@@ -75,25 +57,16 @@ jobs:
         with:
           context: .
           file: 5g-catalogue-gui/Dockerfile
-          build-args:
-            - name: catalogue_repo
-              value: https://github.com/nextworks-it/5g-catalogue.git
-            - name: catalogue_version
-              value: 5g_zorro
-            - name: catalogue_server_port
-              value: 31086
-            - name: catalogue_scope
-              value: PUBLIC
-            - name: catalogue_profile
-              value: default
-            - name: keycloak_enabled
-              value: false
-            - name: keycloak_url
-              value: http://127.0.0.1:8080/auth/
-            - name: keycloak_realm
-              value: osm
-            - name: keycloak_gui_client
-              value: 5gcatalogue
+          build-args: |
+            catalogue_repo=https://github.com/nextworks-it/5g-catalogue.git
+            catalogue_version=5g_zorro
+            catalogue_server_port=31086
+            catalogue_scope=PUBLIC
+            catalogue_profile=default
+            keycloak_enabled=false
+            keycloak_url=http://127.0.0.1:8080/auth/
+            keycloak_realm=osm
+            keycloak_gui_client=5gcatalogue
           push: true
           tags: docker.pkg.github.com/Mike-no/xRM/5gCatalogueGui:latest
       - name: Build resource-definition-translator Container image
@@ -101,18 +74,12 @@ jobs:
         with:
           context: .
           file: resource-definition-translator/Dockerfile
-          build-args:
-            - name: NFV_SOL006_LIBS_REPO
-              value: https://github.com/nextworks-it/nfv-sol-libs.git
-            - name: NFV_SOL006_LIBS_VERSION
-              value: feat-nfv-sol006-libs-osm
-            - name: TMF_INFO_MODELS_REPO
-              value: https://github.com/5GZORRO/resource-and-service-offer-catalog.git
-            - name: TMF_INFO_MODELS_VERSION
-              value: main
-            - name: TRANSLATOR_REPO
-              value: https://github.com/5GZORRO/resource-definition-translator.git
-            - name: TRANSLATOR_VERSION
-              value: main
+          build-args: |
+            NFV_SOL006_LIBS_REPO=https://github.com/nextworks-it/nfv-sol-libs.git
+            NFV_SOL006_LIBS_VERSION=feat-nfv-sol006-libs-osm
+            TMF_INFO_MODELS_REPO=https://github.com/5GZORRO/resource-and-service-offer-catalog.git
+            TMF_INFO_MODELS_VERSION=main
+            TRANSLATOR_REPO=https://github.com/5GZORRO/resource-definition-translator.git
+            TRANSLATOR_VERSION=main
           push: true
           tags: docker.pkg.github.com/Mike-no/xRM/resource-definition-translator:latest
