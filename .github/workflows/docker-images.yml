@@ -1,0 +1,118 @@
+name: Docker Images CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-push-latest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Log in to GitHub Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: docker.pkg.github.com
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Kafka Container image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: kafka/Dockerfile
+          push: true
+          tags: docker.pkg.github.com/Mike-no/xRM/kafka:latest
+      - name: Build 5gCatalogueApp Container image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: 5g-catalogue-app/Dockerfile
+          build-args:
+            - name: catalogue_repo
+              value: https://github.com/nextworks-it/5g-catalogue.git
+            - name: catalogue_version
+              value: 5g_zorro
+            - name: catalogue_server_port
+              value: 8086
+            - name: nfv_sol_libs_repo
+              value: https://github.com/nextworks-it/nfv-sol-libs.git
+            - name: nfv_sol_libs_version
+              value: feat-nfv-sol006-libs-osm
+            - name: nfv_ifa_libs_repo
+              value: https://github.com/nextworks-it/nfv-ifa-libs.git
+            - name: nfv_ifa_libs_version
+              value: dev_5growth
+            - name: mano_id
+              value: ZORRO_OSMR10
+            - name: mano_type
+              value: OSMR10
+            - name: mano_site
+              value: ZORRO_OSM
+            - name: mano_ip
+              value: 172.28.3.59
+            - name: mano_port
+              value: 9999
+            - name: mano_username
+              value: admin
+            - name: mano_password
+              value: admin
+            - name: mano_project
+              value: admin
+            - name: public_catalogue_id
+              value: DEFAULT_CAT
+            - name: public_catalogue_url
+              value: http://127.0.0.1:8083/
+            - name: proxy_enabled
+              value: false
+          push: true
+          tags: docker.pkg.github.com/Mike-no/xRM/5gCatalogueApp:latest
+      - name: Build 5gCatalogueGui Container image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: 5g-catalogue-gui/Dockerfile
+          build-args:
+            - name: catalogue_repo
+              value: https://github.com/nextworks-it/5g-catalogue.git
+            - name: catalogue_version
+              value: 5g_zorro
+            - name: catalogue_server_port
+              value: 31086
+            - name: catalogue_scope
+              value: PUBLIC
+            - name: catalogue_profile
+              value: default
+            - name: keycloak_enabled
+              value: false
+            - name: keycloak_url
+              value: http://127.0.0.1:8080/auth/
+            - name: keycloak_realm
+              value: osm
+            - name: keycloak_gui_client
+              value: 5gcatalogue
+          push: true
+          tags: docker.pkg.github.com/Mike-no/xRM/5gCatalogueGui:latest
+      - name: Build resource-definition-translator Container image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: resource-definition-translator/Dockerfile
+          build-args:
+            - name: NFV_SOL006_LIBS_REPO
+              value: https://github.com/nextworks-it/nfv-sol-libs.git
+            - name: NFV_SOL006_LIBS_VERSION
+              value: feat-nfv-sol006-libs-osm
+            - name: TMF_INFO_MODELS_REPO
+              value: https://github.com/5GZORRO/resource-and-service-offer-catalog.git
+            - name: TMF_INFO_MODELS_VERSION
+              value: main
+            - name: TRANSLATOR_REPO
+              value: https://github.com/5GZORRO/resource-definition-translator.git
+            - name: TRANSLATOR_VERSION
+              value: main
+          push: true
+          tags: docker.pkg.github.com/Mike-no/xRM/resource-definition-translator:latest
