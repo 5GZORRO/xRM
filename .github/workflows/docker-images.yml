@@ -37,9 +37,9 @@ jobs:
             catalogue_server_port=8086
             nfv_sol_libs_repo=https://github.com/nextworks-it/nfv-sol-libs.git
             nfv_sol_libs_version=feat-nfv-sol006-libs-osm
-            nfv_ifa_libs_repo=value: https://github.com/nextworks-it/nfv-ifa-libs.git
+            nfv_ifa_libs_repo=https://github.com/nextworks-it/nfv-ifa-libs.git
             nfv_ifa_libs_version=dev_5growth
-            mano_id=value: ZORRO_OSMR10
+            mano_id=ZORRO_OSMR10
             mano_type=OSMR10
             mano_site=ZORRO_OSM
             mano_ip=172.28.3.59
