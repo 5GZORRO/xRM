@@ -25,7 +25,7 @@ jobs:
           context: kafka/
           file: kafka/Dockerfile
           push: true
-          tags: docker.pkg.github.com/mike-no/xrm/kafka:latest
+          tags: docker.pkg.github.com/5gzorro/xrm/kafka:latest
       - name: Build 5gCatalogueApp Container image
         uses: docker/build-push-action@v2
         with:
@@ -51,7 +51,7 @@ jobs:
             public_catalogue_url=http://127.0.0.1:8083/
             proxy_enabled=false
           push: true
-          tags: docker.pkg.github.com/mike-no/xrm/5gcatalogueapp:latest
+          tags: docker.pkg.github.com/5gzorro/xrm/5gcatalogueapp:latest
       - name: Build 5gCatalogueGui Container image
         uses: docker/build-push-action@v2
         with:
@@ -68,7 +68,7 @@ jobs:
             keycloak_realm=osm
             keycloak_gui_client=5gcatalogue
           push: true
-          tags: docker.pkg.github.com/mike-no/xrm/5gcataloguegui:latest
+          tags: docker.pkg.github.com/5gzorro/xrm/5gcataloguegui:latest
       - name: Build resource-definition-translator Container image
         uses: docker/build-push-action@v2
         with:
@@ -82,4 +82,4 @@ jobs:
             TRANSLATOR_REPO=https://github.com/5GZORRO/resource-definition-translator.git
             TRANSLATOR_VERSION=main
           push: true
-          tags: docker.pkg.github.com/mike-no/xrm/resource-definition-translator:latest
+          tags: docker.pkg.github.com/5gzorro/xrm/resource-definition-translator:latest

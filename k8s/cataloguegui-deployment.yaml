@@ -25,7 +25,7 @@ spec:
         io.kompose.service: cataloguegui
     spec:
       containers:
-        - image: mikeno/5g-catalogue-gui:latest
+        - image: docker.pkg.github.com/5gzorro/xrm/5gcataloguegui:latest
           name: cataloguegui
           ports:
             - containerPort: 80

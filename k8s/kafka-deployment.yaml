@@ -39,7 +39,7 @@ spec:
               value: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
             - name: KAFKA_ZOOKEEPER_CONNECT
               value: zookeeper:2181
-          image: mikeno/kafka:latest
+          image: docker.pkg.github.com/5gzorro/xrm/kafka:latest
           name: kafka
           ports:
             - containerPort: 9092

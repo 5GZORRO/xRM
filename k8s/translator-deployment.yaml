@@ -50,7 +50,7 @@ spec:
               value: 172.28.3.126
             - name: RAPP_URL
               value: 172.28.3.242:2626
-          image: mikeno/resource-definition-translator:latest
+          image: docker.pkg.github.com/5gzorro/xrm/resource-definition-translator:latest
           name: resource-definition-translator
           ports:
             - containerPort: 31090
