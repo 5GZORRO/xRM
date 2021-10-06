@@ -93,6 +93,8 @@ spec:
               name: catalogueapp-hostpath1
             - mountPath: /var/log/5gcatalogue
               name: catalogueapp-hostpath2
+      imagePullSecrets: 
+        - name: regcred
       restartPolicy: Always
       volumes:
         - hostPath:

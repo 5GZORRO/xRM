@@ -48,6 +48,8 @@ spec:
           volumeMounts:
             - mountPath: /var/run/docker.sock
               name: kafka-hostpath0
+      imagePullSecrets: 
+        - name: regcred
       restartPolicy: Always
       volumes:
         - hostPath:

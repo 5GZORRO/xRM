@@ -55,5 +55,7 @@ spec:
           ports:
             - containerPort: 31090
           resources: {}
+      imagePullSecrets: 
+        - name: regcred
       restartPolicy: Always
 status: {}
