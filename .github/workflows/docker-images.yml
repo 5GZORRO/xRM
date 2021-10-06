@@ -22,14 +22,14 @@ jobs:
       - name: Build Kafka Container image
         uses: docker/build-push-action@v2
         with:
-          context: ./kafka/
+          context: kafka/
           file: Dockerfile
           push: true
           tags: docker.pkg.github.com/mike-no/xrm/kafka:latest
       - name: Build 5gCatalogueApp Container image
         uses: docker/build-push-action@v2
         with:
-          context: ./5g-catalogue-app/
+          context: 5g-catalogue-app/
           file: Dockerfile
           build-args: |
             catalogue_repo=https://github.com/nextworks-it/5g-catalogue.git
@@ -55,7 +55,7 @@ jobs:
       - name: Build 5gCatalogueGui Container image
         uses: docker/build-push-action@v2
         with:
-          context: ./5g-catalogue-gui/
+          context: 5g-catalogue-gui/
           file: Dockerfile
           build-args: |
             catalogue_repo=https://github.com/nextworks-it/5g-catalogue.git
@@ -72,7 +72,7 @@ jobs:
       - name: Build resource-definition-translator Container image
         uses: docker/build-push-action@v2
         with:
-          context: ./resource-definition-translator/
+          context: resource-definition-translator/
           file: Dockerfile
           build-args: |
             NFV_SOL006_LIBS_REPO=https://github.com/nextworks-it/nfv-sol-libs.git
