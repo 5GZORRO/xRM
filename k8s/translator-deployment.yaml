@@ -27,7 +27,7 @@ spec:
       containers:
         - env:
             - name: DESCRIPTOR_SOURCE_HOSTNAME
-              value: CatalogueApp
+              value: catalogueapp
             - name: DESCRIPTOR_SOURCE_PORT
               value: "31086"
             - name: OFFER_CATALOG_HOSTNAME
