@@ -31,7 +31,7 @@ Please note that the docker images in this repository were built targetting the 
     docker build -t 5gcatalogueapp -f Dockerfile \
     --build-arg catalogue_repo=https://github.com/nextworks-it/5g-catalogue.git \
     --build-arg catalogue_version=5g_zorro \
-    --build-arg catalogue_server_port=8086 \
+    --build-arg catalogue_server_port=31086 \
     --build-arg nfv_sol_libs_repo=https://github.com/nextworks-it/nfv-sol-libs.git \
     --build-arg nfv_sol_libs_version=feat-nfv-sol006-libs-osm \
     --build-arg nfv_ifa_libs_repo=https://github.com/nextworks-it/nfv-ifa-libs.git \
