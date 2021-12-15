@@ -115,6 +115,10 @@
                   {
                     "pattern": "/nslcm/v1/ns_lcm_op_occs/(.*)",
                     "url": "{#endpoints['default']}/osm/nslcm/v1/ns_lcm_op_occs/{#group[0]}"
+                  },
+                  {
+                    "pattern": "/api/v1/query",
+                    "url": "{#endpoints['monitoring']}"
                   }
                 ]
               }
@@ -200,7 +204,7 @@
           },
           {
             "name": "monitoring",
-            "target": "http://172.28.3.17:9091/api/v1/query_range",
+            "target": "http://172.28.3.17:9091/api/v1/query",
             "weight": 1,
             "backup": false,
             "type": "HTTP",
