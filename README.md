@@ -77,7 +77,7 @@ Please note that the docker images in this repository were built targetting the 
     .
   ```
 - Push the images you built in a docker registry and update each k8s deployment file (kafka-deployment.yaml, catalogueapp-deployment.yaml, cataloguegui-deployment.yaml, translator-deployment.yaml) with the new image paths; update also the imagePullSecret accordingly.
-- update the MGMT_API_URL (management-ui-deployment.yaml) and PORTAL_API_URL (portal-ui-deployment.yaml) environment variables specifying the hostname and port of the k8s cluster node on which these gravitee components will run. To assign a pod to a specific node you can follow this https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/ (Please note that the labels are already specified in the deployment files).
+- update the MGMT_API_URL (management-ui-deployment.yaml) and PORTAL_API_URL (portal-ui-deployment.yaml) environment variables specifying the hostname and port of the management-api-service.
 - If needed, customize the environment variables in the k8s deployment files.
 - deploy the xRM
   ```bash
