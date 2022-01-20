@@ -196,7 +196,7 @@
         "endpoints": [
           {
             "name": "default",
-            "target": "https://172.28.3.17:9999",
+            "target": "https://172.28.3.8:9999",
             "weight": 1,
             "backup": false,
             "type": "HTTP",
@@ -204,7 +204,7 @@
           },
           {
             "name": "monitoring",
-            "target": "http://172.28.3.17:9091/api/v1/query",
+            "target": "http://172.28.3.8:9091/api/v1/query",
             "weight": 1,
             "backup": false,
             "type": "HTTP",
