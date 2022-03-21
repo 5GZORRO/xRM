@@ -3,6 +3,8 @@ name: Docker Images CI
 on:
   push:
     branches: [ main ]
+  release:
+    types: [created]
 
 jobs:
   build-and-push-latest:
