@@ -69,7 +69,7 @@ Please note that the docker images in this repository were built targetting the 
     cd resource-definition-translator
     docker build -t resource-definition-translator -f Dockerfile \
     --build-arg NFV_SOL006_LIBS_REPO=https://github.com/nextworks-it/nfv-sol-libs.git \
-    --build-arg NFV_SOL006_LIBS_VERSION=feat-nfv-sol006-libs-osm \
+    --build-arg NFV_SOL006_LIBS_VERSION=master \
     --build-arg TMF_INFO_MODELS_REPO=https://github.com/5GZORRO/resource-and-service-offer-catalog.git \
     --build-arg TMF_INFO_MODELS_VERSION=main \
     --build-arg TRANSLATOR_REPO=https://github.com/5GZORRO/resource-definition-translator.git \
