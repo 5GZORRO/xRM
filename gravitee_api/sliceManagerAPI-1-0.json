@@ -1,8 +1,8 @@
 {
-  "name": "rAPP-API",
-  "crossId": "559b2245-1045-4005-9b22-4510457005d2",
+  "name": "sliceManagerAPI",
+  "crossId": "34da048e-09c7-48c0-9a04-8e09c768c09c",
   "version": "1.0",
-  "description": "Endpoints to interact with the Radio Planning and Spectrum Application:\n- Endpoint to retrieve the Spectrum Resources from the rAPP\n- Endpoint to retrieve the Radio Resources from the rAPP",
+  "description": "Endpoints to interact with the Slice Manager",
   "visibility": "PUBLIC",
   "gravitee": "2.0.0",
   "flow_mode": "DEFAULT",
@@ -19,39 +19,39 @@
   ],
   "pages": [
     {
-      "id": "fd1b5441-4867-3126-ad42-5d06800f929d",
-      "crossId": "d107ea95-94d3-433e-87ea-9594d3b33e4a",
+      "id": "62701589-eb30-453a-b015-89eb30653a0c",
+      "crossId": "56c686c5-fcc0-4cdb-8686-c5fcc01cdb55",
       "name": "Aside",
       "type": "SYSTEM_FOLDER",
       "order": 0,
       "published": true,
       "visibility": "PUBLIC",
-      "lastModificationDate": 1651855274106,
+      "lastModificationDate": 1651855306466,
       "contentType": "application/json",
       "homepage": false,
       "parentPath": "",
       "excludedAccessControls": false,
       "accessControls": [],
-      "api": "83148d03-7fc9-3c6a-906b-6900dd62ab37",
+      "api": "9f924cc0-5e64-42c2-924c-c05e64a2c2f7",
       "attached_media": []
     }
   ],
   "plans": [
     {
-      "id": "278f3a41-8682-36a4-b742-373b079a4803",
-      "crossId": "58ec8a65-aa31-40e5-ac8a-65aa3190e542",
-      "name": "rAPP-API-Plan",
-      "description": "Plan for the rAPP API",
+      "id": "d5a935c2-c69e-409f-a935-c2c69ee09f85",
+      "crossId": "d6d9bc31-bdf2-4695-99bc-31bdf2d695de",
+      "name": "sliceMangerPlan",
+      "description": "Plan for Slice Manager API",
       "validation": "AUTO",
       "security": "API_KEY",
       "type": "API",
       "status": "PUBLISHED",
-      "api": "83148d03-7fc9-3c6a-906b-6900dd62ab37",
-      "order": 0,
+      "api": "9f924cc0-5e64-42c2-924c-c05e64a2c2f7",
+      "order": 1,
       "characteristics": [],
-      "created_at": 1651842385288,
-      "updated_at": 1651855273853,
-      "published_at": 1651842385292,
+      "created_at": 1651852384128,
+      "updated_at": 1651855306334,
+      "published_at": 1651854502085,
       "paths": {},
       "flows": [
         {
@@ -74,12 +74,8 @@
               "configuration": {
                 "rules": [
                   {
-                    "pattern": "/spc",
-                    "url": "{#endpoints['default']}/SpectrumWallet/listSpectrumResources"
-                  },
-                  {
-                    "pattern": "/rad",
-                    "url": "{#endpoints['default']}/RadioResources/listRadioResources"
+                    "pattern": "/slice_type",
+                    "url": "{#endpoints['default']}/api/v1.0/slic3_type"
                   }
                 ]
               }
@@ -99,15 +95,15 @@
       "format": "MAIL",
       "value": "${(api.primaryOwner.email)!''}",
       "defaultValue": "support@change.me",
-      "apiId": "83148d03-7fc9-3c6a-906b-6900dd62ab37"
+      "apiId": "9f924cc0-5e64-42c2-924c-c05e64a2c2f7"
     }
   ],
-  "id": "83148d03-7fc9-3c6a-906b-6900dd62ab37",
+  "id": "9f924cc0-5e64-42c2-924c-c05e64a2c2f7",
   "path_mappings": [],
   "proxy": {
     "virtual_hosts": [
       {
-        "path": "/rapp/"
+        "path": "/sm/"
       }
     ],
     "strip_context_path": false,
@@ -117,12 +113,12 @@
         "name": "default-group",
         "endpoints": [
           {
-            "name": "default",
-            "target": "http://172.28.3.242:2626",
-            "weight": 1,
             "backup": false,
-            "type": "HTTP",
-            "inherit": true
+            "inherit": true,
+            "name": "default",
+            "weight": 1,
+            "type": "http",
+            "target": "http://172.28.3.15:32135"
           }
         ],
         "load_balancing": {

@@ -1,5 +1,6 @@
 {
   "name": "osmAPI",
+  "crossId": "fadc7858-2c3c-408e-9c78-582c3c508e57",
   "version": "1.0",
   "description": "Endpoints to interact with Open Source MANO (OSM)",
   "visibility": "PUBLIC",
@@ -12,41 +13,45 @@
       "source": "memory",
       "sourceId": "admin",
       "roles": [
-        "3c12d9a9-01ae-45b5-92d9-a901aea5b589"
+        "50b96165-180c-487a-b961-65180c087a10"
       ]
     }
   ],
   "pages": [
     {
-      "id": "8122dcab-2fb2-3297-8256-7dcf06d81ac0",
+      "id": "f9bdfb0b-f04d-302b-aa85-9319d82f0c40",
+      "crossId": "6fc196fe-e8d0-4e85-8196-fee8d07e85b8",
       "name": "Aside",
       "type": "SYSTEM_FOLDER",
       "order": 0,
       "published": true,
       "visibility": "PUBLIC",
-      "lastModificationDate": 1632315709488,
+      "lastModificationDate": 1651855209274,
       "contentType": "application/json",
       "homepage": false,
       "parentPath": "",
       "excludedAccessControls": false,
       "accessControls": [],
-      "api": "933831dd-6d7f-4ee5-b831-dd6d7f2ee577"
+      "api": "4f0270e6-2582-3f96-a9c2-8fd9c9607abd",
+      "attached_media": []
     }
   ],
   "plans": [
     {
-      "id": "872286d7-18a9-3594-91cc-91220e0eb41a",
+      "id": "8dc80855-01ae-36b1-867a-171adfe30697",
+      "crossId": "a668b8ef-079b-46a8-a8b8-ef079b56a812",
       "name": "osmAPI Plan",
       "description": "Plan for the Open Source MANO (OSM) API",
       "validation": "AUTO",
       "security": "API_KEY",
       "type": "API",
       "status": "PUBLISHED",
-      "api": "933831dd-6d7f-4ee5-b831-dd6d7f2ee577",
+      "api": "4f0270e6-2582-3f96-a9c2-8fd9c9607abd",
       "order": 0,
       "characteristics": [],
-      "created_at": 1632315709508,
-      "updated_at": 1632315709508,
+      "created_at": 1651842952233,
+      "updated_at": 1651855209101,
+      "published_at": 1651842952233,
       "paths": {},
       "flows": [
         {
@@ -172,15 +177,15 @@
       "format": "MAIL",
       "value": "${(api.primaryOwner.email)!''}",
       "defaultValue": "support@change.me",
-      "apiId": "933831dd-6d7f-4ee5-b831-dd6d7f2ee577"
+      "apiId": "4f0270e6-2582-3f96-a9c2-8fd9c9607abd"
     }
   ],
-  "id": "933831dd-6d7f-4ee5-b831-dd6d7f2ee577",
+  "id": "4f0270e6-2582-3f96-a9c2-8fd9c9607abd",
   "path_mappings": [],
   "proxy": {
     "virtual_hosts": [
       {
-        "path": "/osm"
+        "path": "/osm/"
       }
     ],
     "strip_context_path": false,
@@ -195,20 +200,20 @@
         "name": "default-group",
         "endpoints": [
           {
-            "name": "default",
-            "target": "https://172.28.3.8:9999",
-            "weight": 1,
             "backup": false,
-            "type": "HTTP",
-            "inherit": true
+            "inherit": true,
+            "name": "default",
+            "weight": 1,
+            "type": "http",
+            "target": "https://172.28.3.65:9999"
           },
           {
-            "name": "monitoring",
-            "target": "http://172.28.3.8:9091/api/v1/query",
-            "weight": 1,
             "backup": false,
-            "type": "HTTP",
-            "inherit": true
+            "inherit": true,
+            "name": "monitoring",
+            "weight": 1,
+            "type": "http",
+            "target": "http://172.28.3.65:9091/api/v1/query"
           }
         ],
         "load_balancing": {
@@ -249,7 +254,8 @@
         "*"
       ],
       "allowHeaders": [
-        "x-gravitee-api-key"
+        "x-gravitee-api-key",
+        "content-type"
       ],
       "allowMethods": [
         "TRACE",
@@ -268,7 +274,7 @@
   },
   "response_templates": {},
   "primaryOwner": {
-    "id": "4b91fb5b-d206-498c-91fb-5bd206398cb0",
+    "id": "dbbed1da-35b5-47d4-bed1-da35b5f7d4a0",
     "displayName": "admin",
     "type": "USER"
   }

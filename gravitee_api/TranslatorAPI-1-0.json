@@ -1,5 +1,6 @@
 {
   "name": "TranslatorAPI",
+  "crossId": "bb64c603-b4e5-40a0-a4c6-03b4e5a0a06a",
   "version": "1.0",
   "description": "Endpoints to interact with the Resource Definition Translator:\n- Endpoint to translate a Network Service Descriptor specifying the info id used in the 5G Apps & Services Catalogue\n- Endpoint to translate a Virtualized Network Function Descriptor specifying the info id used in the 5G Apps & Services Catalogue\n- Endpoint to translate a Spectrum Resource specifying the info id used in the rAPP\n- Endpoint to translate a Radio Resource specifying the info id used in the rAPP",
   "visibility": "PUBLIC",
@@ -12,63 +13,55 @@
       "source": "memory",
       "sourceId": "admin",
       "roles": [
-        "8fd6ec23-202c-4f2d-96ec-23202cef2d0a"
+        "50b96165-180c-487a-b961-65180c087a10"
       ]
     }
   ],
   "pages": [
     {
-      "id": "56c607d0-c130-4681-8607-d0c13086815d",
+      "id": "fa12f738-9b24-3a47-b465-2965de32d02a",
+      "crossId": "2b408af7-ea1e-4d06-808a-f7ea1e7d06d3",
       "name": "Aside",
       "type": "SYSTEM_FOLDER",
       "order": 0,
       "published": true,
       "visibility": "PUBLIC",
-      "lastModificationDate": 1629294691740,
+      "lastModificationDate": 1651855357565,
       "contentType": "application/json",
       "homepage": false,
       "parentPath": "",
       "excludedAccessControls": false,
       "accessControls": [],
-      "api": "092b3858-b28c-475a-ab38-58b28cd75a38",
+      "api": "cef4b194-4425-3990-9475-7a8e3e800430",
       "attached_media": []
     }
   ],
   "plans": [
     {
-      "id": "5048823f-ef89-420d-8882-3fef89520d35",
+      "id": "6545ec8e-7b99-385c-b014-847a5b97922b",
+      "crossId": "a633e3de-1d64-4b1b-b3e3-de1d647b1b62",
       "name": "TranslatorAPI Plan",
       "description": "Plan for TranslatorAPI",
       "validation": "AUTO",
       "security": "API_KEY",
       "type": "API",
       "status": "PUBLISHED",
-      "api": "092b3858-b28c-475a-ab38-58b28cd75a38",
+      "api": "cef4b194-4425-3990-9475-7a8e3e800430",
       "order": 0,
       "characteristics": [],
-      "created_at": 1629294691771,
-      "updated_at": 1629294691771,
+      "created_at": 1651847714179,
+      "updated_at": 1651855357421,
+      "published_at": 1651847714179,
       "paths": {},
       "flows": [
         {
           "name": "",
           "path-operator": {
-            "operator": "STARTS_WITH",
-            "path": "/"
+            "path": "/",
+            "operator": "STARTS_WITH"
           },
           "condition": "",
-          "methods": [],
-          "pre": [],
-          "post": [],
-          "enabled": true
-        },
-        {
-          "name": "",
-          "path-operator": {
-            "operator": "STARTS_WITH",
-            "path": "/"
-          },
-          "condition": "",
+          "consumers": [],
           "methods": [
             "POST"
           ],
@@ -99,6 +92,18 @@
                   {
                     "pattern": "/rad/(.*)",
                     "url": "{#endpoints['default']}/radToTmf/{#group[0]}"
+                  },
+                  {
+                    "pattern": "/edge/(.*)",
+                    "url": "{#endpoints['default']}/edgeToTmf/{#group[0]}"
+                  },
+                  {
+                    "pattern": "/cloud/(.*)",
+                    "url": "{#endpoints['default']}/cloudToTmf/{#group[0]}"
+                  },
+                  {
+                    "pattern": "/nest/(.*)",
+                    "url": "{#endpoints['default']}/sliceToTmf/{#group[0]}"
                   }
                 ]
               }
@@ -118,15 +123,15 @@
       "format": "MAIL",
       "value": "${(api.primaryOwner.email)!''}",
       "defaultValue": "support@change.me",
-      "apiId": "092b3858-b28c-475a-ab38-58b28cd75a38"
+      "apiId": "cef4b194-4425-3990-9475-7a8e3e800430"
     }
   ],
-  "id": "092b3858-b28c-475a-ab38-58b28cd75a38",
+  "id": "cef4b194-4425-3990-9475-7a8e3e800430",
   "path_mappings": [],
   "proxy": {
     "virtual_hosts": [
       {
-        "path": "/translator"
+        "path": "/translator/"
       }
     ],
     "strip_context_path": false,
@@ -141,12 +146,12 @@
         "name": "default-group",
         "endpoints": [
           {
-            "name": "default",
-            "target": "http://172.17.0.1:9090/sol006-tmf",
-            "weight": 1,
             "backup": false,
-            "type": "HTTP",
-            "inherit": true
+            "inherit": true,
+            "name": "default",
+            "weight": 1,
+            "type": "http",
+            "target": "http://translator:31090/sol006-tmf"
           }
         ],
         "load_balancing": {
@@ -163,11 +168,35 @@
           "followRedirects": false
         }
       }
-    ]
+    ],
+    "cors": {
+      "enabled": true,
+      "allowCredentials": false,
+      "allowOrigin": [
+        "*"
+      ],
+      "allowHeaders": [
+        "content-type",
+        "x-gravitee-api-key"
+      ],
+      "allowMethods": [
+        "TRACE",
+        "HEAD",
+        "DELETE",
+        "POST",
+        "GET",
+        "OPTIONS",
+        "PATCH",
+        "PUT"
+      ],
+      "exposeHeaders": [],
+      "maxAge": -1,
+      "runPolicies": true
+    }
   },
   "response_templates": {},
   "primaryOwner": {
-    "id": "89ec0cff-b1b2-461c-ac0c-ffb1b2d61c95",
+    "id": "dbbed1da-35b5-47d4-bed1-da35b5f7d4a0",
     "displayName": "admin",
     "type": "USER"
   }

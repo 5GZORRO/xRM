@@ -1,8 +1,9 @@
 {
   "name": "5G-CatalogueAPI",
+  "crossId": "b744d2cc-2cf6-468b-84d2-cc2cf6c68be8",
   "version": "1.0",
   "description": "Endpoints to interact with the 5G Apps & Services Catalogue:\n- Endpoint to retrieve a Network Service Descriptor from the 5G Apps & Services Catalogue using the ns info id\n- Endpoint to retrieve a Virtualized Network Function from the 5G Apps & Services Catalogue using the vnf package id",
-  "visibility": "PRIVATE",
+  "visibility": "PUBLIC",
   "gravitee": "2.0.0",
   "flow_mode": "DEFAULT",
   "resources": [],
@@ -12,49 +13,54 @@
       "source": "memory",
       "sourceId": "admin",
       "roles": [
-        "326cc7aa-919d-44a1-acc7-aa919d64a162"
+        "50b96165-180c-487a-b961-65180c087a10"
       ]
     }
   ],
   "pages": [
     {
-      "id": "31d7640c-95b7-4afb-9764-0c95b72afb28",
+      "id": "cdb2451b-fa29-37ab-bbb3-541fb4d79748",
+      "crossId": "2a70757a-4a1e-45ac-b075-7a4a1ef5acfc",
       "name": "Aside",
       "type": "SYSTEM_FOLDER",
       "order": 0,
       "published": true,
       "visibility": "PUBLIC",
-      "lastModificationDate": 1627335668621,
+      "lastModificationDate": 1651855120677,
       "contentType": "application/json",
       "homepage": false,
       "parentPath": "",
       "excludedAccessControls": false,
       "accessControls": [],
-      "api": "8aa7b186-ca76-4995-a7b1-86ca76c995bd"
+      "api": "4dd1eb6d-1df6-38ce-a057-408512256b9b",
+      "attached_media": []
     }
   ],
   "plans": [
     {
-      "id": "2bf6e475-ca6b-4626-b6e4-75ca6b7626ed",
+      "id": "1ee4abeb-d0b1-3ac6-88bb-197406888068",
+      "crossId": "e62a9de7-fbaf-4e54-aa9d-e7fbaf6e5487",
       "name": "5G CatalogueAPI Plan",
       "description": "5G CatalogueAPI Plan",
       "validation": "AUTO",
       "security": "API_KEY",
       "type": "API",
       "status": "PUBLISHED",
-      "api": "8aa7b186-ca76-4995-a7b1-86ca76c995bd",
+      "api": "4dd1eb6d-1df6-38ce-a057-408512256b9b",
       "order": 0,
-      "created_at": 1627335668641,
-      "updated_at": 1627335668641,
+      "created_at": 1651843295142,
+      "updated_at": 1651855120430,
+      "published_at": 1651843295142,
       "paths": {},
       "flows": [
         {
           "name": "",
           "path-operator": {
-            "operator": "STARTS_WITH",
-            "path": "/"
+            "path": "/",
+            "operator": "STARTS_WITH"
           },
           "condition": "",
+          "consumers": [],
           "methods": [
             "GET"
           ],
@@ -100,15 +106,15 @@
       "format": "MAIL",
       "value": "${(api.primaryOwner.email)!''}",
       "defaultValue": "support@change.me",
-      "apiId": "8aa7b186-ca76-4995-a7b1-86ca76c995bd"
+      "apiId": "4dd1eb6d-1df6-38ce-a057-408512256b9b"
     }
   ],
-  "id": "8aa7b186-ca76-4995-a7b1-86ca76c995bd",
+  "id": "4dd1eb6d-1df6-38ce-a057-408512256b9b",
   "path_mappings": [],
   "proxy": {
     "virtual_hosts": [
       {
-        "path": "/catalogue"
+        "path": "/catalogue/"
       }
     ],
     "strip_context_path": false,
@@ -118,12 +124,12 @@
         "name": "default-group",
         "endpoints": [
           {
-            "name": "default",
-            "target": "http://172.17.0.1:8086",
-            "weight": 1,
             "backup": false,
-            "type": "HTTP",
-            "inherit": true
+            "inherit": true,
+            "name": "default",
+            "weight": 1,
+            "type": "http",
+            "target": "http://catalogueapp:31086"
           }
         ],
         "load_balancing": {
@@ -140,11 +146,35 @@
           "followRedirects": false
         }
       }
-    ]
+    ],
+    "cors": {
+      "enabled": true,
+      "allowCredentials": false,
+      "allowOrigin": [
+        "*"
+      ],
+      "allowHeaders": [
+        "content-type",
+        "x-gravitee-api-key"
+      ],
+      "allowMethods": [
+        "TRACE",
+        "HEAD",
+        "DELETE",
+        "POST",
+        "GET",
+        "OPTIONS",
+        "PATCH",
+        "PUT"
+      ],
+      "exposeHeaders": [],
+      "maxAge": -1,
+      "runPolicies": true
+    }
   },
   "response_templates": {},
   "primaryOwner": {
-    "id": "9decb7d6-ae82-41f6-acb7-d6ae8231f6ac",
+    "id": "dbbed1da-35b5-47d4-bed1-da35b5f7d4a0",
     "displayName": "admin",
     "type": "USER"
   }
