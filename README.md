@@ -1,15 +1,31 @@
 # xRM
-x-Resource Manager implementation, component of the 5G-ZORRO platform. The x-Resource-Manager is a collection of various modules that interact with each other:
 
-- Gravitee (northbound interface of the xRM)
-- 5G Apps & Services Catalogue
-- Resource Definition Translator
+## Introduction
+The Any Resource Manager (xRM) is a module in the 5GZORRO Platform, available in each stakeholder domain, that directly interacts with the underlying 5G Virtualized Platform, offering, towards the upper layer applications, a set of services related to the resources monitoring and management, including a direct support to the 5GZORRO Resource and Service Offering Catalogue (RSOC) through a translation service for the on-demand translation of technical descriptors (virtual network function resources, network services, radio resources, spectrum resource, edge resources, cloud resources, slice services) into proper resource and service models defined by the TM Forum.
 
 Please note that the docker images in this repository were built targetting the 5G-Barcelona testbed as virtualized environment, follow the installation sections for further informations.
+Consider also that the xRM is the lowest layer of the 5G ZORRO architecture, so some of the component that are managed by the xRM itself that are deployed in the underlying layer could not be available to be used with the APIs defined by the xRM after the latter has been deployed (i.e., Radio Controller)
 
-## Requirements
+![xrm architecture](docs/img/xrm_arc.png)
+
+## Prerequisites
+
+### System Requirements
+- 4 vCPU
+- 6GB RAM
+
+### Software dependencies
 - Docker (tested with 20.10.8)
 - Docker Compose (tested with 1.28.5)
+- OSM release 10
+- [5G-Catalogue](https://github.com/nextworks-it/5g-catalogue) 
+
+### 5GZORRO Module dependencies
+- [Resource Definition Translator](https://github.com/5GZORRO/resource-definition-translator)
+- [Slice Manager](https://github.com/5GZORRO/slice-manager)
+- Radio Controller
+
+## Installation
 
 ## Deployment with docker-compose
 - Customize the enviroment variables in ```xRM/.env``` and ```xRM/5g-catalogue-app/profiles/default.env```
@@ -84,10 +100,19 @@ Please note that the docker images in this repository were built targetting the 
     kubectl apply -f k8s/
   ```
 
-## Usage
-- Gravitee APIM Management UI accessible at ```http://localhost:8084``` (docker-compose deployment) or ```http://hostname:31084``` (k8s deployment)
-- Gravitee APIM Portal UI accessible at ```http://localhost:8085``` (docker-compose deployment) or ```http://hostname:31085``` (k8s deployment)
-- Gravitee APIM Gateway reachable at ```http://localhost:8082``` (docker-compose deployment) or ```http://hostname:31081``` (k8s deployment)
-- 5G Apps & Services Catalogue UI accesible at ```http://localhost:8087/5gcatalogue``` (docker-compose deployment) or ```http://hostname:31087``` (k8s deployment)
-- 5G Apps & Services Catalogue Swagger UI accessible at ```http://localhost:8086/swagger-ui.html``` (docker-compose deployment) or ```http://hostname:31086``` (k8s deployment)
-- Resource Definition Translator Swagger UI accessible at ```http://localhost:9090/sol006-tmf/swagger-ui/``` (docker-compose deployment) or ```http://hostname:31090``` (k8s deployment)
+
+## Configuration
+After the deployment of the Any Resource Manager, the component should be configured with the APIs that need to be exposed by the Northbound Interface of the xRM itself. The folder `gravitee_api/` contains the definition of the APIs that can be imported into the xRM for each of the component that can be managed by the Resource Manager.
+To import the APIs defined for a given component (the 5G-Catalogue will be taken as example in the following description) you have to:
+- update the targetted endpoint where the component is available in the json API definition (proxy.groups.0.endpoints.0.target)
+- import the API in the Management Interface accessing the correspondent service through its exposed web interface (admin/admin)
+- create the correspondent application in the Web Portal Interface in order to connect an app to a set of APIs: a Gravitee API-Key will be released to access the APIs.
+
+For further details you can follow the [official guidelines](https://docs.gravitee.io/apim/3.x/apim_publisherguide_import_apis.html) for importing and creating APIs within gravitee.
+
+## Maintainers
+**Pietro Giuseppe Giardina** - *Design* - p.giardina@nextworks.it </br>
+**Michael De Angelis** - *Develop and Design* - m.deangelis@nextworks.it </br>
+
+## License
+This module is distributed under [Apache 2.0 License](LICENSE) terms.
